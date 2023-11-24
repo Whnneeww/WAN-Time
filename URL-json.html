@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get JSON</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Get JSON</h1>
+    <input type="text" id="stringParamInput" placeholder="Enter String Param">
+    <button onclick="getJSON()">Get JSON</button>
+
+    <script>
+        function getJSON() {
+            var stringParam = document.getElementById('stringParamInput').value;
+            var jsonData = {
+                string_param: stringParam
+            };
+
+            // JSONデータをテキストファイルに変換
+            var txtData = JSON.stringify(jsonData);
+
+            // テキストファイルをダウンロード
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(txtData));
+            element.setAttribute('download', 'output.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>
